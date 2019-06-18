@@ -1,0 +1,308 @@
+CREATE DATABASE  IF NOT EXISTS `crs` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `crs`;
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+--
+-- Host: localhost    Database: crs
+-- ------------------------------------------------------
+-- Server version	5.6.17
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `company_thread`
+--
+
+DROP TABLE IF EXISTS `company_thread`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `company_thread` (
+  `thread_id` int(11) NOT NULL AUTO_INCREMENT,
+  `thread_create_date` datetime NOT NULL,
+  `messanger_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`thread_id`),
+  KEY `company_id_idx` (`messanger_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `company_thread`
+--
+
+LOCK TABLES `company_thread` WRITE;
+/*!40000 ALTER TABLE `company_thread` DISABLE KEYS */;
+/*!40000 ALTER TABLE `company_thread` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `crs_admin_info`
+--
+
+DROP TABLE IF EXISTS `crs_admin_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `crs_admin_info` (
+  `admin_first_name` varchar(45) NOT NULL,
+  `admin_last_name` varchar(45) NOT NULL,
+  `admin_email` varchar(45) NOT NULL,
+  `admin_gender` varchar(8) NOT NULL,
+  `admin_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `admin_mobileno` bigint(20) NOT NULL,
+  `admin_password` varchar(45) NOT NULL,
+  `admin_status` bit(1) NOT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `crs_admin_info`
+--
+
+LOCK TABLES `crs_admin_info` WRITE;
+/*!40000 ALTER TABLE `crs_admin_info` DISABLE KEYS */;
+INSERT INTO `crs_admin_info` VALUES ('hash','patel','hash@gmail.com','male',1,9601003131,'12345','');
+/*!40000 ALTER TABLE `crs_admin_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `crs_company_info`
+--
+
+DROP TABLE IF EXISTS `crs_company_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `crs_company_info` (
+  `emr_firstname` varchar(45) NOT NULL,
+  `emr_lastname` varchar(45) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `company_name` varchar(45) NOT NULL,
+  `emr_mobileno` bigint(20) NOT NULL,
+  `company_address` varchar(45) NOT NULL,
+  `emr_gender` varchar(8) NOT NULL,
+  `emr_nationality` varchar(45) NOT NULL,
+  `emr_address` varchar(45) NOT NULL,
+  `company_status` bit(1) NOT NULL,
+  `company_password` varchar(45) NOT NULL,
+  `emr_email` varchar(45) NOT NULL,
+  `company_email` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`company_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `crs_company_info`
+--
+
+LOCK TABLES `crs_company_info` WRITE;
+/*!40000 ALTER TABLE `crs_company_info` DISABLE KEYS */;
+INSERT INTO `crs_company_info` VALUES ('harshy','patel',1,'dot inc',9999,'asdas dfasdfasfas','male','American','   sfdf\r\n	\r\n	\r\n	\r\n	\r\n	\r\n	\r\n	','','12345','hash20192@gmail.com','dot@dot.com');
+/*!40000 ALTER TABLE `crs_company_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `crs_company_message`
+--
+
+DROP TABLE IF EXISTS `crs_company_message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `crs_company_message` (
+  `company_message` blob,
+  `company_subject` varchar(100) DEFAULT NULL,
+  `comapny_to` varchar(300) DEFAULT NULL,
+  `company_from` varchar(100) DEFAULT NULL,
+  `company_thread` int(11) NOT NULL,
+  `company_datentime` datetime DEFAULT NULL,
+  `crs_company_messagecol` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `crs_company_message`
+--
+
+LOCK TABLES `crs_company_message` WRITE;
+/*!40000 ALTER TABLE `crs_company_message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `crs_company_message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `crs_jobpost`
+--
+
+DROP TABLE IF EXISTS `crs_jobpost`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `crs_jobpost` (
+  `company_id` varchar(45) NOT NULL,
+  `company_name` varchar(45) NOT NULL,
+  `location` varchar(45) NOT NULL,
+  `nationality` varchar(45) NOT NULL,
+  `min_experience` varchar(20) NOT NULL,
+  `skills` varchar(150) NOT NULL,
+  `function` varchar(150) NOT NULL,
+  `role` varchar(150) NOT NULL,
+  `industry` varchar(150) NOT NULL,
+  `posted_on` date NOT NULL,
+  `job_description` longtext NOT NULL,
+  `about_company` blob NOT NULL,
+  `job_title` varchar(100) NOT NULL,
+  `max_experience` varchar(20) NOT NULL,
+  `job_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `min_salary` int(11) DEFAULT NULL,
+  `max_salary` int(11) DEFAULT NULL,
+  `education` varchar(45) DEFAULT NULL,
+  `job_status` bit(1) DEFAULT b'1',
+  PRIMARY KEY (`job_id`),
+  KEY `job_company_idx` (`company_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `crs_jobpost`
+--
+
+LOCK TABLES `crs_jobpost` WRITE;
+/*!40000 ALTER TABLE `crs_jobpost` DISABLE KEYS */;
+INSERT INTO `crs_jobpost` VALUES 
+('1','dot inc','Gandhinagar','UK','2','Please refer to the Job description above','IT Hardware, Technical Support, Telecom Engineering','Customer Support Engineer/Technician','IT-Hardware & Networking','2014-03-03','Hi,\r\n\r\nWe have opening for role of IT Asset Management Executive for one our client in Goregaon .\r\n\r\nCriteria \r\nMinimum 2 years experience is mandatory\r\nshould be good in terms of communication as its for one of the international customer.\r\nshould be a graduate i.e-10+2+3 or 10+2+4 from affiliated university.\r\nshould have all the set of documents for the companies worked-Offer letter, salary slip, Experience letter.\r\n\r\n\r\nBelow are the job description -\r\n\r\n1.	Experience in IT Asset management\r\n2.	Good understanding of IT Assets Reconciliation and IT Assets Labeling \r\n3.	IT Asset Inventory management. Coordinate with all the towers to get the required information and make it presentable\r\n4.	Coordinate with all the technical towers for IT Asset Inventory\r\n5.	Good understanding of IT Assets capitalization\r\n6.	Liaising with Finance, Procurement and other team to get the required information\r\n7.	Excellent understanding of MS Office Excel, Power point\r\n8.	Minimum 2-3 years of exp in Asset management, movement, tracking, disposal.\r\n9.	Responsible for Entire Life Cycle of an Asset in the Organization Inventory Management-\r\n\r\n\r\nIf interested please share your resume on o_akshataya@microland.com \r\n\r\nNote: Candidate with good communication skills need to apply\r\n\r\n\r\nRegards,\r\nAkshata Y\r\n','http://www.microland.co.in','Urgent Opening for IT Asset Management Executive - Mumbai - 3 Opening(s)','3',1,NULL,NULL,NULL,''),
+('1','dot inc','Surat','UK','0','Application Software Designing Developmentprogramming programmer,oracle and apps, hardware, design','IT Software - Application Programming, Maintenance','Software Developer','IT-Software / Software Services','2014-02-12','Junior level developers to perform analysis, design requirements, develop project plans, perform unit and integration testing, document systems, train users, and enhance existing systems that have been developed in Window Forms and SQL Server.\r\nSalary:Competitive salary based on merit and market standards.\r\nIndustry:IT-Software / Software Services\r\nFunctional Area:IT Software - Application Programming, Maintenance\r\nRole Category:Programming & Design\r\nRole:Software Developer\r\nKeyskills: Application Software Designing Development programming, programmer ,oracle and apps ,hardware ,design\r\n','Customer is King \r\nhttp://www.customeriskinginc.com\r\nCustomer is king creates value by providing solutins in technology, infrastructure and consulting, our view is to create clarity in the complexity of the universe. Registered in india since 2002.','IT Fresher - Software Engineer','1',2,NULL,NULL,NULL,''),
+('1','dot inc','Surat','UK','4','Please refer to the Job description above','IT Software - Application Programming, Maintenance','Customer Support Engineer/Technician','IT-Hardware & Networking','2014-02-24','dgdggfdg','fdgdfgdgdgdfg','ravi .net','5',3,NULL,NULL,NULL,''),
+('1','dot inc','Surat','India','5','java, adobe flex, java flex, flex developer, flex programmer','IT Software - Application Programming, Maintenance','Software Developer','IT-Software / Software Services','2014-03-03','JOB DESCRIPTION -\r\nThe incumbent will be responsible for Software coding, System Study, Implementation of S/w Product/ Solutions, Testing, Customization, Integration of S/w Product/ Solutions, Training and Trouble Shooting etc. Knowledge of current technological trends in the S/W development industry, such as OOPs, Multi-Tier S/W development, Component Architecture, Web Based S/W is required. Should have adequate programming skills and proficiency in Web services, Adobe Flex 3, with Oracle / SQL.\r\n\r\nDESIRED PROFILE -\r\nThe candidate should be BE/B Tech/MCA/ Computer Science Graduates (first class throughout) with 2-4 years of experience (in detail level of coding, code walk through and unit testing of S/W modules.\r\nKnowledge of Web Services with Adobe Flex 3 with Java & backend as Oracle or SQL is essential.\r\nImplementation experience is a must.\r\nThorough knowledge of OS and H/W systems is required.\r\nBasic knowledge of current technological trends in the S/W development industry such as OOPs, Multi-Tier S/W development, Component Architecture, Web-Based S/W is required.\r\nThe candidate should have excellent interpersonal, communication and customer relation skills. ','Newgen Software has been positioned in the Magic Quadrant for Business Process Management (BPM) and Enterprise Content Management (ECM).','Newgen Software - Senior Software Engineer - Delhi NCR - 2 Opening(s)','6',4,NULL,NULL,NULL,''),
+('1','dot inc','Gandhinagar','India','0','software developer,Fresher and Trainee and Entry Level,programmer,software engineer ,software programmer ,programmer analyst','IT Software - Application Programming, Maintenance','Trainee','IT-Software / Software Services','2014-03-28','candidates willing to work in IT Software Development only need to apply<br />\n<br />\nBE/Btech - ECE, EEE, IT, CSE<br />\n<br />\n2012, 2013 & 2014 Freshers can apply<br />\n<br />\ngood communication skill must<br />\n<br />\nwilling to work in IT Development only need to apply<br />\n<br />\n<br />\nsalary - Rs.7500/- in Training Period<br />\n<br />\nafter training based on performance salary may vary from <br />\n<br />\nRs.10,000/- to Rs.12,000/-<br />\n<br />\njob location pondicherry<br />\n<br />\nfor more details<br />\n<br />\nARKS<br />\n<br />\n+91 72000 46418<br />\n+91 72000 38096<br />\n<br />\narksrd@gmail.com<br />\n<br />\nARKS Service charges apply','ARKS IRD IPL \r\nhttp://arksipl.in/\r\nARKS IRD (I) P Ltd., Hosur is Pioneered into Engineering Services in Automotive and Civil Sectors.\r\nARKS IRD (I) P Ltd., Provide Training and Placement Services in Various Design Sectors\r\nARKS IRD (I) P Ltd., is into HR Services in many Companies\r\n','Fresher 2012, 2013 & 2014 Fresher BE ECE / IT / CSE','1',6,NULL,NULL,NULL,'');
+/*!40000 ALTER TABLE `crs_jobpost` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `crs_resume`
+--
+
+DROP TABLE IF EXISTS `crs_resume`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `crs_resume` (
+  `idcrs_resume` varchar(50) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `post_on` date NOT NULL,
+  `user_resume` blob,
+  PRIMARY KEY (`idcrs_resume`),
+  KEY `user_id_idx` (`user_id`),
+  CONSTRAINT `user_id_Resume` FOREIGN KEY (`user_id`) REFERENCES `crs_user_info` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `crs_resume`
+--
+
+LOCK TABLES `crs_resume` WRITE;
+/*!40000 ALTER TABLE `crs_resume` DISABLE KEYS */;
+/*!40000 ALTER TABLE `crs_resume` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `crs_user_info`
+--
+
+DROP TABLE IF EXISTS `crs_user_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `crs_user_info` (
+  `user_first_name` varchar(45) NOT NULL,
+  `user_last_name` varchar(45) NOT NULL,
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_mobileno` bigint(20) NOT NULL,
+  `user_status` bit(1) NOT NULL,
+  `user_email` varchar(45) NOT NULL,
+  `user_password` varchar(45) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `crs_user_info`
+--
+
+LOCK TABLES `crs_user_info` WRITE;
+/*!40000 ALTER TABLE `crs_user_info` DISABLE KEYS */;
+INSERT INTO `crs_user_info` VALUES ('Harsh','Patel',1,9601003131,'','hash20192@gmail.com','12345'),('ronak','prajapati',2,9991919191,'\0','ronak@gmail.com','12345');
+/*!40000 ALTER TABLE `crs_user_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `job_apply`
+--
+
+DROP TABLE IF EXISTS `job_apply`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `job_apply` (
+  `job_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `company_name` varchar(45) NOT NULL,
+  `job_title` varchar(45) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `user_email` varchar(45) NOT NULL,
+  `isread` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`job_id`,`user_id`),
+  KEY `job_id_idx` (`job_id`),
+  KEY `company_id_idx` (`company_id`),
+  KEY `user_id_idx` (`user_id`),
+  CONSTRAINT `company_id` FOREIGN KEY (`company_id`) REFERENCES `crs_company_info` (`company_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `job_id` FOREIGN KEY (`job_id`) REFERENCES `crs_jobpost` (`job_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `crs_user_info` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_apply`
+--
+
+LOCK TABLES `job_apply` WRITE;
+/*!40000 ALTER TABLE `job_apply` DISABLE KEYS */;
+/*!40000 ALTER TABLE `job_apply` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `message_thread`
+--
+
+DROP TABLE IF EXISTS `message_thread`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `message_thread` (
+  `thread_id` int(11) NOT NULL AUTO_INCREMENT,
+  `thread_create_date` datetime NOT NULL,
+  `messanger_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`thread_id`),
+  KEY `company_id_idx` (`messanger_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `message_thread`
+--
+
+LOCK TABLES `message_thread` WRITE;
+/*!40000 ALTER TABLE `message_thread` DISABLE KEYS */;
+/*!40000 ALTER TABLE `message_thread` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-03-17 23:23:59
