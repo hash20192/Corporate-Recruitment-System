@@ -1,0 +1,78 @@
+@CHARSET "ISO-8859-1";
+
+#user_login_center{
+	float: left;
+	width: auto;
+	height: 120px;
+	position: relative;
+}
+
+#user_login_menu{
+	float: left;
+	color: #fff;
+	list-style-type: none;
+	font-size: 18px;
+	padding:0px; 
+	margin: 0px 0px 0px 30%;
+	background-color: rgba(12,12,12,0.5);
+	height: 35px;
+	width:480px;
+	border-radius:0px 0px 50px 50px;
+	position: relative;
+	-webkit-box-shadow: 2px 2px 30px 0px rgba(255, 53, 50, 0.75);
+	-moz-box-shadow:    2px 2px 30px 0px rgba(255, 53, 50, 0.75);
+	box-shadow:         2px 2px 30px 0px rgba(255, 53, 50, 0.75);
+}
+
+#user_login_menu a{
+	text-decoration: none;
+	color: #b1b1b1;
+}
+
+#user_login_menu a:hover{
+	text-decoration: underline;
+	color:white;
+}
+
+#user_login_menu ul{
+	margin:5px 0px 0px 15px;
+	padding:5px;
+}
+
+#user_login_menu li{
+	padding-right:10px;
+	display: inline;
+	margin-left: 10px;
+}
+
+#user_login_search{
+	float:left;
+	width: 480px;
+	margin: 30px 0px 0px 30px;
+}
+
+#user_login_search input{
+	padding: 10px;
+	width: 300px;
+}
+
+#user_login_search input[type="submit"]{
+padding: 10px;
+width: 70px;
+}
+
+#user_login_search input[type="reset"]{
+padding: 10px;
+width: 70px;
+}
+
+#mandn{
+	float: left;
+	color:white;
+	margin: 40px 0px 0px 100px;
+}
+
+#c_mail{
+	width:32px;
+	height:32px;
+}
